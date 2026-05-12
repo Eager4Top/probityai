@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Data Deletion — PROBITY AI</title>
+  <meta name="description" content="Request deletion of your PROBITY AI account and all associated data. Required by Facebook, Instagram, TikTok and X developer policies."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#060b14;--surface:#0d1627;--surface2:#111e35;--border:rgba(56,189,248,.13);--sky:#38bdf8;--gold:#fbbf24;--green:#34d399;--red:#f87171;--text:#e2e8f0;--muted:#7b90b2;--radius:14px}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.7}
+    nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(14px);background:rgba(6,11,20,.85);border-bottom:1px solid var(--border);padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;color:#fff;text-decoration:none}
+    .nav-logo span{color:var(--sky)}
+    .nav-back{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}
+    .nav-back:hover{color:var(--sky)}
+    .page-wrap{max-width:720px;margin:0 auto;padding:56px 24px 80px}
+    .doc-badge{display:inline-block;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.25);color:#fca5a5;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:16px}
+    .doc-title{font-family:'Syne',sans-serif;font-size:clamp(28px,5vw,42px);font-weight:800;color:#fff;letter-spacing:-1px;margin-bottom:10px}
+    .doc-meta{font-size:13px;color:var(--muted);margin-bottom:40px;padding-bottom:32px;border-bottom:1px solid var(--border)}
+    h2{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;color:#fff;margin:36px 0 12px}
+    p{font-size:15px;color:#b8c8dc;margin-bottom:14px}
+    ul{padding-left:22px;margin-bottom:16px}
+    li{font-size:15px;color:#b8c8dc;margin-bottom:8px}
+    strong{color:var(--text)}
+    .steps-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:14px;margin:24px 0}
+    .step-item{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:20px 22px;display:flex;gap:16px;align-items:flex-start}
+    .step-num{background:var(--sky);color:#000;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+    .step-content h4{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:4px}
+    .step-content p{font-size:14px;color:var(--muted);margin:0}
+    .info-box{background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.2);border-radius:10px;padding:18px 22px;margin:20px 0}
+    .info-box p{margin:0;font-size:14px;color:var(--sky)}
+    .warn-box{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.2);border-radius:10px;padding:18px 22px;margin:20px 0}
+    .warn-box p{margin:0;font-size:14px;color:#fde68a}
+    .btn-tg{display:inline-flex;align-items:center;gap:8px;background:var(--sky);color:#000;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;padding:14px 28px;border-radius:10px;text-decoration:none;margin-top:8px;transition:all .2s;box-shadow:0 0 24px rgba(56,189,248,.2)}
+    .btn-tg:hover{background:#7dd3fc;transform:translateY(-2px)}
+    .confirm-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin:32px 0;text-align:center}
+    .confirm-box h3{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#fff;margin-bottom:10px}
+    .confirm-box p{font-size:14px;color:var(--muted);margin-bottom:20px}
+    .what-deleted{background:rgba(248,113,113,.05);border:1px solid rgba(248,113,113,.15);border-radius:10px;padding:20px 22px;margin:20px 0}
+    .what-deleted h4{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#fca5a5;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+    .what-deleted li{font-size:14px;color:#fca5a5;margin-bottom:5px}
+    .what-kept{background:rgba(52,211,153,.05);border:1px solid rgba(52,211,153,.15);border-radius:10px;padding:20px 22px;margin:20px 0}
+    .what-kept h4{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--green);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+    .what-kept li{font-size:14px;color:#6ee7b7;margin-bottom:5px}
+    .footer-doc{margin-top:56px;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    .footer-doc p{font-size:12px;color:var(--muted);margin:0}
+    .footer-doc a{color:var(--sky);text-decoration:none;font-size:12px}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">PROBITY<span>AI</span></a>
+  <a href="index.html" class="nav-back">← Back to Home</a>
+</nav>
+
+<div class="page-wrap">
+  <div class="doc-badge">User Rights</div>
+  <div class="doc-title">Data Deletion Request</div>
+  <div class="doc-meta">Last updated: <strong>May 2026</strong> &nbsp;·&nbsp; Response within <strong>30 days</strong></div>
+
+  <p>PROBITY AI respects your right to have your personal data deleted. This page explains exactly what gets deleted, what is retained for legal reasons, and how to submit your request.</p>
+  <p>This page also serves as PROBITY AI's official <strong>Data Deletion Callback URL</strong> as required by Meta (Facebook &amp; Instagram), TikTok, and X developer policies.</p>
+
+  <div class="confirm-box">
+    <h3>Request Account &amp; Data Deletion</h3>
+    <p>Open the PROBITY AI bot on Telegram and send a deletion request through our support system. Your request will be processed within 30 days.</p>
+    <a href="https://t.me/ProbityAIBot" target="_blank" class="btn-tg">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+      Submit Deletion Request via Bot
+    </a>
+  </div>
+
+  <h2>Step-by-Step Deletion Process</h2>
+  <ul class="steps-list">
+    <li class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Open the PROBITY AI Bot</h4>
+        <p>Tap the button above or search for @ProbityAIBot on Telegram and open a chat.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Go to Support</h4>
+        <p>In the bot menu, tap <strong>Support → New Ticket</strong> and select the <strong>"Account Deletion"</strong> ticket type.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Send Your Request</h4>
+        <p>In the ticket message write: <strong>"I request deletion of my account and all associated personal data."</strong></p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Receive Confirmation</h4>
+        <p>You will receive a ticket confirmation number. Your data will be fully deleted within 30 days and you will be notified when complete.</p>
+      </div>
+    </li>
+  </ul>
+
+  <h2>What Gets Deleted</h2>
+  <div class="what-deleted">
+    <h4>🗑 Permanently Deleted</h4>
+    <ul>
+      <li>Your Telegram ID, name, username, and phone number</li>
+      <li>All connected social media handles and usernames</li>
+      <li>All OAuth access tokens (encrypted) for all platforms</li>
+      <li>Your TON wallet address</li>
+      <li>Profile URL data and session tokens</li>
+      <li>Support ticket messages</li>
+      <li>Referral relationships</li>
+      <li>Registration session data</li>
+    </ul>
+  </div>
+
+  <div class="what-kept">
+    <h4>📋 Retained for Legal Compliance</h4>
+    <ul>
+      <li>Anonymized transaction records (required for financial compliance — 3 years)</li>
+      <li>Aggregated, non-identifiable ad performance statistics</li>
+      <li>Security incident logs (anonymized, 90 days)</li>
+    </ul>
+  </div>
+
+  <div class="warn-box"><p>⚠️ Deleting your account will forfeit any unwithdrawn USDT balance below the minimum withdrawal threshold (5 USDT). Please withdraw your balance before requesting deletion if you wish to retain your earned rewards.</p></div>
+
+  <h2>Disconnecting a Single Platform</h2>
+  <p>If you only want to disconnect one social media handle (rather than deleting your entire account):</p>
+  <ul>
+    <li>Open the PROBITY AI bot → <strong>Social Handles → [Platform Name] → Update Handle</strong></li>
+    <li>Or revoke PROBITY AI's access directly from your social media account settings (Facebook Settings → Apps &amp; Websites, etc.)</li>
+  </ul>
+  <p>Revoking access on the social media platform's side immediately invalidates PROBITY AI's stored OAuth token for that platform, which we then detect and clear automatically.</p>
+
+  <h2>For Facebook / Instagram OAuth Disconnection</h2>
+  <p>If you connected your Facebook or Instagram account to PROBITY AI and wish to revoke access:</p>
+  <ul>
+    <li>Go to <strong>Facebook Settings → Security → Apps &amp; Websites</strong></li>
+    <li>Find <strong>PROBITY AI</strong> in the list</li>
+    <li>Click <strong>Remove</strong></li>
+  </ul>
+  <p>This immediately revokes our access token. Your data will be deleted from our servers within 30 days or immediately upon receiving a deletion request.</p>
+
+  <div class="info-box"><p>📋 This page serves as PROBITY AI's Data Deletion Callback URL for Meta Platform Terms compliance. The URL for this page is: <strong>https://[yourusername].github.io/probityai/data-deletion.html</strong></p></div>
+
+  <h2>Processing Time</h2>
+  <p>All deletion requests are processed within <strong>30 days</strong> of receipt. You will receive a confirmation message via Telegram when deletion is complete. If you do not receive confirmation within 30 days, please resubmit your request.</p>
+
+  <div class="footer-doc">
+    <p>© 2026 PROBITY AI · All rights reserved</p>
+    <div style="display:flex;gap:20px;flex-wrap:wrap">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="cookies.html">Cookies</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

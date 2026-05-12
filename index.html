@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>PROBITY AI — Earn USDT by Posting Ads</title>
+  <meta name="description" content="PROBITY AI — The blockchain-powered social media advertising platform. Merchants run AI-generated ads. Promoters earn USDT daily by posting."/>
+  <meta property="og:title" content="PROBITY AI — Earn USDT by Posting Ads"/>
+  <meta property="og:description" content="Connect your social media handles and earn real USDT rewards every time you post an ad. Powered by AI on the TON blockchain."/>
+  <meta property="og:type" content="website"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:        #060b14;
+      --surface:   #0d1627;
+      --surface2:  #111e35;
+      --border:    rgba(56,189,248,.13);
+      --sky:       #38bdf8;
+      --sky2:      #0ea5e9;
+      --gold:      #fbbf24;
+      --green:     #34d399;
+      --text:      #e2e8f0;
+      --muted:     #7b90b2;
+      --radius:    14px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;line-height:1.65}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(14px);background:rgba(6,11,20,.8);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:#fff;letter-spacing:.5px}
+    .nav-logo span{color:var(--sky)}
+    .nav-links{display:flex;gap:24px;align-items:center}
+    .nav-links a{color:var(--muted);font-size:14px;text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--sky)}
+    .nav-cta{background:var(--sky);color:#000;font-weight:600;font-size:13px;padding:8px 18px;border-radius:8px;text-decoration:none;transition:background .2s}
+    .nav-cta:hover{background:var(--sky2);color:#fff}
+
+    /* ── HERO ── */
+    .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(56,189,248,.12) 0%,transparent 70%);pointer-events:none}
+    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(56,189,248,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+    .hero-inner{position:relative;max-width:760px}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.25);border-radius:100px;padding:6px 16px;font-size:12px;color:var(--sky);font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-bottom:28px}
+    .hero-badge::before{content:'';width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+    h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(36px,6vw,72px);line-height:1.08;letter-spacing:-1.5px;color:#fff;margin-bottom:22px}
+    h1 span{color:var(--sky)}
+    h1 em{color:var(--gold);font-style:normal}
+    .hero-sub{font-size:clamp(15px,2vw,19px);color:var(--muted);max-width:560px;margin:0 auto 36px;font-weight:300}
+    .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .btn-primary{background:var(--sky);color:#000;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;padding:14px 30px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;box-shadow:0 0 30px rgba(56,189,248,.3)}
+    .btn-primary:hover{background:#fff;box-shadow:0 0 40px rgba(56,189,248,.5);transform:translateY(-2px)}
+    .btn-secondary{background:transparent;color:var(--text);font-size:15px;padding:14px 30px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);transition:all .2s}
+    .btn-secondary:hover{border-color:var(--sky);color:var(--sky)}
+    .hero-stat-row{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-top:56px;padding-top:40px;border-top:1px solid var(--border)}
+    .stat{text-align:center}
+    .stat-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:#fff}
+    .stat-num span{color:var(--sky)}
+    .stat-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-top:2px}
+
+    /* ── SECTIONS ── */
+    section{padding:80px 24px}
+    .section-inner{max-width:1080px;margin:0 auto}
+    .section-tag{font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--sky);margin-bottom:12px}
+    .section-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(26px,4vw,42px);color:#fff;margin-bottom:16px;letter-spacing:-1px}
+    .section-sub{color:var(--muted);font-size:16px;max-width:520px;line-height:1.7}
+
+    /* ── HOW IT WORKS ── */
+    .how{background:var(--surface)}
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:48px}
+    .step{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;position:relative;transition:border-color .2s}
+    .step:hover{border-color:rgba(56,189,248,.4)}
+    .step-num{font-family:'Syne',sans-serif;font-size:42px;font-weight:800;color:rgba(56,189,248,.15);position:absolute;top:16px;right:20px}
+    .step-icon{font-size:28px;margin-bottom:14px}
+    .step h3{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:8px}
+    .step p{font-size:14px;color:var(--muted);line-height:1.6}
+
+    /* ── PLATFORMS ── */
+    .platforms-grid{display:flex;flex-wrap:wrap;gap:16px;margin-top:44px}
+    .platform-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:14px;flex:1;min-width:160px;transition:all .2s}
+    .platform-card:hover{border-color:rgba(56,189,248,.35);transform:translateY(-3px)}
+    .platform-card .p-icon{font-size:28px}
+    .platform-card .p-name{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#fff}
+    .platform-card .p-status{font-size:12px;color:var(--green);margin-top:2px}
+
+    /* ── ROLES ── */
+    .roles{background:var(--surface)}
+    .roles-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
+    @media(max-width:640px){.roles-grid{grid-template-columns:1fr}}
+    .role-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:32px 28px}
+    .role-card.highlight{border-color:rgba(56,189,248,.4);background:linear-gradient(135deg,rgba(56,189,248,.07),var(--surface2))}
+    .role-card .r-label{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:12px}
+    .role-card.highlight .r-label{color:var(--sky)}
+    .role-card .r-label:not(.highlight .r-label){color:var(--gold)}
+    .role-card h3{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:12px}
+    .role-card p{font-size:14px;color:var(--muted);margin-bottom:20px;line-height:1.7}
+    .role-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+    .role-list li{font-size:14px;color:var(--text);display:flex;align-items:center;gap:8px}
+    .role-list li::before{content:'✓';color:var(--green);font-weight:700;font-size:13px}
+
+    /* ── EARNINGS ── */
+    .earn-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+    @media(max-width:640px){.earn-box{grid-template-columns:1fr}}
+    .earn-item .e-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
+    .earn-item .e-value{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--gold)}
+    .earn-item .e-note{font-size:13px;color:var(--muted);margin-top:4px}
+
+    /* ── FAQ ── */
+    .faq-list{margin-top:44px;display:flex;flex-direction:column;gap:14px}
+    .faq-item{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;cursor:pointer;transition:border-color .2s}
+    .faq-item:hover{border-color:rgba(56,189,248,.3)}
+    .faq-q{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:16px}
+    .faq-a{font-size:14px;color:var(--muted);margin-top:12px;line-height:1.7;display:none}
+    .faq-item.open .faq-a{display:block}
+    .faq-item.open{border-color:rgba(56,189,248,.35)}
+    .faq-chevron{color:var(--sky);font-size:18px;transition:transform .2s;flex-shrink:0}
+    .faq-item.open .faq-chevron{transform:rotate(45deg)}
+
+    /* ── CTA ── */
+    .cta-section{background:linear-gradient(135deg,rgba(56,189,248,.1),rgba(14,165,233,.05));border-top:1px solid var(--border);border-bottom:1px solid var(--border);text-align:center;padding:80px 24px}
+    .cta-section h2{font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:800;color:#fff;margin-bottom:16px}
+    .cta-section p{color:var(--muted);font-size:16px;margin-bottom:36px}
+
+    /* ── FOOTER ── */
+    footer{background:var(--surface);border-top:1px solid var(--border);padding:48px 24px 32px}
+    .footer-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+    @media(max-width:768px){.footer-inner{grid-template-columns:1fr 1fr}}
+    @media(max-width:480px){.footer-inner{grid-template-columns:1fr}}
+    .footer-brand .fb-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:#fff;margin-bottom:10px}
+    .footer-brand .fb-logo span{color:var(--sky)}
+    .footer-brand p{font-size:13px;color:var(--muted);line-height:1.7;max-width:220px}
+    .footer-col h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px}
+    .footer-col a{display:block;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:8px;transition:color .2s}
+    .footer-col a:hover{color:var(--sky)}
+    .footer-bottom{max-width:1080px;margin:32px auto 0;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:gap;gap:12px}
+    .footer-bottom p{font-size:12px;color:var(--muted)}
+
+    /* ── MOBILE NAV ── */
+    @media(max-width:600px){
+      .nav-links{display:none}
+      .hero-stat-row{gap:20px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">PROBITY<span>AI</span></div>
+  <div class="nav-links">
+    <a href="#how">How it works</a>
+    <a href="#platforms">Platforms</a>
+    <a href="#roles">Roles</a>
+    <a href="#faq">FAQ</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+  </div>
+  <a href="https://t.me/ProbityAIBot" target="_blank" class="nav-cta">Open Bot ↗</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">● Live on TON Blockchain</div>
+    <h1>Earn <em>USDT</em> by Posting<br/><span>Ads on Social Media</span></h1>
+    <p class="hero-sub">PROBITY AI connects merchants with promoters. Post available ads to your Facebook, Instagram, TikTok and more — earn real USDT rewards per post, automatically.</p>
+    <div class="hero-btns">
+      <a href="https://t.me/ProbityAIBot" target="_blank" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+        Start on Telegram
+      </a>
+      <a href="#how" class="btn-secondary">How it works →</a>
+    </div>
+    <div class="hero-stat-row">
+      <div class="stat"><div class="stat-num">6<span>+</span></div><div class="stat-label">Platforms</div></div>
+      <div class="stat"><div class="stat-num"><span>USDT</span></div><div class="stat-label">Reward Currency</div></div>
+      <div class="stat"><div class="stat-num">TON<span> Net</span></div><div class="stat-label">Blockchain</div></div>
+      <div class="stat"><div class="stat-num">AI<span>-Gen</span></div><div class="stat-label">Ad Creation</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-inner">
+    <div class="section-tag">How it works</div>
+    <div class="section-title">Simple. Automated. Rewarding.</div>
+    <div class="section-sub">Four steps from sign-up to earning USDT daily — no technical experience needed.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-icon">🤖</div>
+        <h3>Register via Telegram</h3>
+        <p>Create your free PROBITY AI account directly inside Telegram. Choose your role as Merchant or Promoter.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-icon">🔗</div>
+        <h3>Connect Social Handles</h3>
+        <p>Verify your Facebook, Instagram, TikTok, X, Telegram, or WhatsApp handles using secure OAuth — we never see your password.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-icon">📢</div>
+        <h3>Post Available Ads</h3>
+        <p>Browse available ad campaigns and tap Post. Your connected page receives the ad automatically — zero manual effort.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-icon">💰</div>
+        <h3>Earn USDT Rewards</h3>
+        <p>Each verified post earns you USDT on the TON Network. Withdraw to your TON wallet anytime, no minimum hold.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORTED PLATFORMS -->
+<section id="platforms">
+  <div class="section-inner">
+    <div class="section-tag">Supported platforms</div>
+    <div class="section-title">Post Everywhere,<br/>Earn Everywhere</div>
+    <div class="section-sub">All major social media platforms supported with automatic OAuth verification and one-tap posting.</div>
+    <div class="platforms-grid">
+      <div class="platform-card"><span class="p-icon">📘</span><div><div class="p-name">Facebook</div><div class="p-status">✓ Auto-post to pages</div></div></div>
+      <div class="platform-card"><span class="p-icon">📸</span><div><div class="p-name">Instagram</div><div class="p-status">✓ Auto-post to feed</div></div></div>
+      <div class="platform-card"><span class="p-icon">🎵</span><div><div class="p-name">TikTok</div><div class="p-status">✓ Auto-post content</div></div></div>
+      <div class="platform-card"><span class="p-icon">🐦</span><div><div class="p-name">X (Twitter)</div><div class="p-status">✓ Auto-tweet</div></div></div>
+      <div class="platform-card"><span class="p-icon">✈️</span><div><div class="p-name">Telegram</div><div class="p-status">✓ Channel posts</div></div></div>
+      <div class="platform-card"><span class="p-icon">💬</span><div><div class="p-name">WhatsApp</div><div class="p-status">✓ Status verification</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROLES -->
+<section class="roles" id="roles">
+  <div class="section-inner">
+    <div class="section-tag">Choose your role</div>
+    <div class="section-title">Merchant or Promoter?</div>
+    <div class="section-sub">PROBITY AI works for both sides — advertisers who need reach and social media users who want to earn.</div>
+    <div class="roles-grid">
+      <div class="role-card highlight">
+        <div class="r-label">📱 Promoter</div>
+        <h3>Post Ads. Earn USDT.</h3>
+        <p>You have social media followers. Turn them into daily income by posting approved ads from our marketplace.</p>
+        <ul class="role-list">
+          <li>Connect up to 6 social platforms</li>
+          <li>Browse available ad campaigns</li>
+          <li>One-tap automatic posting</li>
+          <li>Earn USDT per verified post</li>
+          <li>Withdraw to TON wallet anytime</li>
+          <li>Up to 9 posts per day</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <div class="r-label" style="color:var(--gold)">👔 Merchant</div>
+        <h3>Advertise with AI.</h3>
+        <p>You have a product or service. Reach thousands of followers across all platforms with AI-generated ads.</p>
+        <ul class="role-list">
+          <li>AI-powered ad generation</li>
+          <li>Text, Image, Video and Audio ads</li>
+          <li>Auto-distributed to promoters</li>
+          <li>Real-time performance tracking</li>
+          <li>Pay only per verified post</li>
+          <li>Multi-platform targeting</li>
+        </ul>
+      </div>
+    </div>
+    <div class="earn-box">
+      <div class="earn-item"><div class="e-label">Avg reward per post</div><div class="e-value">0.05 USDT</div><div class="e-note">Per verified social media post</div></div>
+      <div class="earn-item"><div class="e-label">Max daily posts</div><div class="e-value">9 posts</div><div class="e-note">Across all connected platforms</div></div>
+      <div class="earn-item"><div class="e-label">Payment network</div><div class="e-value">TON</div><div class="e-note">USDT Jetton — instant settlement</div></div>
+      <div class="earn-item"><div class="e-label">Referral bonus</div><div class="e-value">+2 USDT</div><div class="e-note">Per promoter you refer</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="section-tag">FAQ</div>
+    <div class="section-title">Common Questions</div>
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Is PROBITY AI free to join? <span class="faq-chevron">+</span></div>
+        <div class="faq-a">Yes. Registration is completely free for both Promoters and Merchants. Promoters earn USDT immediately after verifying their first social media handle. Merchants purchase ad bundles to run campaigns.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">How does social media verification work? <span class="faq-chevron">+</span></div>
+        <div class="faq-a">We use OAuth 2.0 — the same secure login standard used by "Sign in with Google" or "Login with Facebook". You log in on the platform's own official page. PROBITY AI never sees or stores your password. You can revoke access at any time from your social media settings.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">When and how do I get paid? <span class="faq-chevron">+</span></div>
+        <div class="faq-a">Rewards are credited to your PROBITY AI wallet after each post is verified (usually within 30 minutes). You can withdraw your USDT balance to any TON Network wallet at any time. The minimum withdrawal is 5 USDT with a 0.50 USDT network fee.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Will posting ads affect my social media account? <span class="faq-chevron">+</span></div>
+        <div class="faq-a">PROBITY AI only posts content that has been approved and complies with each platform's community guidelines. You review what is posted before it goes live. You can disconnect any platform handle at any time with a single tap.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Which countries can use PROBITY AI? <span class="faq-chevron">+</span></div>
+        <div class="faq-a">PROBITY AI is available globally. As long as you have a Telegram account and at least one social media handle, you can participate. Payments are made in USDT on the TON Network which is accessible worldwide.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">How do Merchants get their ads distributed? <span class="faq-chevron">+</span></div>
+        <div class="faq-a">Once a Merchant's ad is approved and active, PROBITY AI automatically notifies all eligible Promoters who have verified handles on the target platforms. Promoters can then post with a single tap. Merchants pay only per verified post — no wasted spend.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-inner">
+    <h2>Start Earning Today</h2>
+    <p>Join PROBITY AI on Telegram — free, instant, and rewarding.</p>
+    <a href="https://t.me/ProbityAIBot" target="_blank" class="btn-primary" style="margin:0 auto;display:inline-flex">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+      Open PROBITY AI Bot
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="fb-logo">PROBITY<span>AI</span></div>
+      <p>Blockchain-powered advertising. Earn USDT by posting ads on your social media.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <a href="#how">How it Works</a>
+      <a href="#platforms">Platforms</a>
+      <a href="#roles">For Promoters</a>
+      <a href="#roles">For Merchants</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="data-deletion.html">Data Deletion</a>
+      <a href="cookies.html">Cookie Policy</a>
+    </div>
+    <div class="footer-col">
+      <h4>Links</h4>
+      <a href="https://t.me/ProbityAIBot" target="_blank">Telegram Bot</a>
+      <a href="https://t.me/ProbityAISupport" target="_blank">Support</a>
+      <a href="oauth-success.html">OAuth Info</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 PROBITY AI. All rights reserved.</p>
+    <p>Built on the TON Blockchain · USDT Payments</p>
+  </div>
+</footer>
+
+<script>
+function toggleFaq(el){
+  const wasOpen=el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen)el.classList.add('open');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Verification Complete — PROBITY AI</title>
+  <meta name="description" content="Your social media handle has been verified. Return to the PROBITY AI Telegram bot."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#060b14;--surface:#0d1627;--surface2:#111e35;--border:rgba(56,189,248,.15);--sky:#38bdf8;--green:#34d399;--red:#f87171;--text:#e2e8f0;--muted:#7b90b2}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+    .bg-glow{position:fixed;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(56,189,248,.08),transparent 70%);pointer-events:none}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:48px 36px;max-width:440px;width:100%;text-align:center;position:relative;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+    .icon-wrap{width:72px;height:72px;border-radius:50%;margin:0 auto 24px;display:flex;align-items:center;justify-content:center;font-size:32px}
+    .icon-success{background:rgba(52,211,153,.12);border:2px solid rgba(52,211,153,.3)}
+    .icon-error{background:rgba(248,113,113,.12);border:2px solid rgba(248,113,113,.3)}
+    .icon-pending{background:rgba(56,189,248,.12);border:2px solid rgba(56,189,248,.3)}
+    h1{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:10px;letter-spacing:-.5px}
+    h1.success{color:var(--green)}
+    h1.error{color:var(--red)}
+    h1.pending{color:var(--sky)}
+    .platform-pill{display:inline-flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:7px 18px;font-size:14px;font-weight:500;color:var(--text);margin:12px 0 20px}
+    .message{font-size:15px;color:var(--muted);line-height:1.65;margin-bottom:28px}
+    .btn-return{display:inline-flex;align-items:center;gap:9px;background:var(--sky);color:#000;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;padding:14px 28px;border-radius:11px;text-decoration:none;transition:all .2s;box-shadow:0 0 28px rgba(56,189,248,.25);width:100%;justify-content:center}
+    .btn-return:hover{background:#7dd3fc;transform:translateY(-2px)}
+    .btn-return.error{background:var(--surface2);color:var(--text);border:1px solid var(--border);box-shadow:none}
+    .btn-return.error:hover{border-color:var(--sky);color:var(--sky)}
+    .auto-note{font-size:12px;color:var(--muted);margin-top:16px}
+    .countdown{color:var(--sky);font-weight:600}
+    .steps{text-align:left;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin:20px 0 24px;display:none}
+    .steps.show{display:block}
+    .steps h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px}
+    .steps ol{padding-left:18px;display:flex;flex-direction:column;gap:8px}
+    .steps li{font-size:13px;color:#b8c8dc}
+    .divider{border:none;border-top:1px solid var(--border);margin:24px 0}
+    .footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+    .footer-links a{font-size:12px;color:var(--muted);text-decoration:none;transition:color .2s}
+    .footer-links a:hover{color:var(--sky)}
+  </style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<div class="card" id="card">
+  <!-- Content injected by JS based on URL params -->
+</div>
+
+<script>
+const BOT_USERNAME = 'ProbityAIBot'; // update to your bot username
+const BOT_URL      = 'https://t.me/' + BOT_USERNAME;
+
+// Read URL params — set by the server /oauth/callback/<platform> redirect
+const params   = new URLSearchParams(location.search);
+const ok       = params.get('ok') === '1' || params.get('success') === '1';
+const error    = params.get('error') || params.get('reason') || '';
+const platform = (params.get('platform') || '').toLowerCase();
+const handle   = params.get('handle') || '';
+
+const PLATFORM_META = {
+  facebook:  { emoji:'📘', name:'Facebook' },
+  instagram: { emoji:'📸', name:'Instagram' },
+  tiktok:    { emoji:'🎵', name:'TikTok' },
+  x:         { emoji:'🐦', name:'X (Twitter)' },
+  telegram:  { emoji:'✈️', name:'Telegram' },
+  whatsapp:  { emoji:'💬', name:'WhatsApp' },
+};
+const pm = PLATFORM_META[platform] || { emoji:'🌐', name: platform ? platform.charAt(0).toUpperCase()+platform.slice(1) : 'Social Media' };
+
+const ERROR_MESSAGES = {
+  handle_mismatch:      'The account you logged in with does not match the handle you added. Please go back to the bot and try again with the correct account.',
+  wrong_credentials:    'Login failed. Please check your credentials and try again.',
+  account_locked:       'Your account appears to be locked or restricted on ' + pm.name + '. Please resolve the issue on ' + pm.name + ' first, then try again.',
+  two_factor_required:  'Two-factor authentication blocked the verification. Please temporarily disable 2FA on ' + pm.name + ', complete verification, then re-enable it.',
+  invalid_state:        'Security validation failed (the link may have expired). Please restart verification from the PROBITY AI bot.',
+  token_exchange_failed:'Could not complete the connection with ' + pm.name + '. Please try again.',
+  unsupported_platform: 'This platform is not yet supported for automatic verification.',
+  cancelled:            'You cancelled the authorisation. Return to the bot and tap Verify again when ready.',
+};
+
+const card = document.getElementById('card');
+
+function renderSuccess() {
+  card.innerHTML = `
+    <div class="icon-wrap icon-success">✅</div>
+    <h1 class="success">${pm.name} Verified!</h1>
+    ${handle ? `<div class="platform-pill">${pm.emoji} @${handle}</div>` : `<div class="platform-pill">${pm.emoji} ${pm.name}</div>`}
+    <p class="message">Your ${pm.name} handle has been verified and linked to PROBITY AI.<br/>You can now earn USDT rewards by posting ads to your ${pm.name} page with one tap.</p>
+    <a href="${BOT_URL}" class="btn-return">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+      Return to PROBITY AI Bot
+    </a>
+    <p class="auto-note">This tab will close automatically in <span class="countdown" id="cd">5</span> seconds</p>
+  `;
+  startCountdown();
+}
+
+function renderError(reason) {
+  const msg = ERROR_MESSAGES[reason] || ('Verification could not be completed' + (reason ? ' (' + reason + ')' : '') + '. Please return to the bot and try again.');
+  card.innerHTML = `
+    <div class="icon-wrap icon-error">❌</div>
+    <h1 class="error">Verification Failed</h1>
+    <div class="platform-pill">${pm.emoji} ${pm.name}</div>
+    <p class="message">${msg}</p>
+    <div class="steps show">
+      <h4>What to do next</h4>
+      <ol>
+        <li>Return to the PROBITY AI bot using the button below</li>
+        <li>Go to Social Handles → ${pm.name}</li>
+        <li>Tap <strong>Verify Handle</strong> to start again</li>
+        <li>If the problem persists, open a Support ticket in the bot</li>
+      </ol>
+    </div>
+    <a href="${BOT_URL}" class="btn-return error">
+      ← Return to PROBITY AI Bot
+    </a>
+  `;
+}
+
+function renderPending() {
+  card.innerHTML = `
+    <div class="icon-wrap icon-pending">⏳</div>
+    <h1 class="pending">Processing…</h1>
+    <div class="platform-pill">${pm.emoji} ${pm.name}</div>
+    <p class="message">Your authorisation is being processed. Please return to the PROBITY AI bot and tap <strong>"I Authorised — Confirm"</strong> to complete verification.</p>
+    <a href="${BOT_URL}" class="btn-return">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+      Return to PROBITY AI Bot
+    </a>
+  `;
+}
+
+// Determine which screen to show
+if (ok)           renderSuccess();
+else if (error)   renderError(error);
+else              renderPending();
+
+// Add footer links
+const divider = document.createElement('hr');
+divider.className = 'divider';
+const footer = document.createElement('div');
+footer.className = 'footer-links';
+footer.innerHTML = '<a href="index.html">Home</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="data-deletion.html">Data Deletion</a>';
+card.appendChild(divider);
+card.appendChild(footer);
+
+// Auto-redirect countdown for success
+function startCountdown() {
+  let n = 5;
+  const el = document.getElementById('cd');
+  const t  = setInterval(() => {
+    n--;
+    if (el) el.textContent = n;
+    if (n <= 0) { clearInterval(t); window.location.href = BOT_URL; }
+  }, 1000);
+}
+</script>
+</body>
+</html>
