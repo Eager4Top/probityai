@@ -30,8 +30,10 @@
 
     /* ── NAV ── */
     nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(14px);background:rgba(6,11,20,.8);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
-    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:#fff;letter-spacing:.5px}
-    .nav-logo span{color:var(--sky)}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo img{height:34px;width:34px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(56,189,248,.4)}
+    .nav-logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:#fff;letter-spacing:.5px}
+    .nav-logo-text span{color:var(--sky)}
     .nav-links{display:flex;gap:24px;align-items:center}
     .nav-links a{color:var(--muted);font-size:14px;text-decoration:none;transition:color .2s}
     .nav-links a:hover{color:var(--sky)}
@@ -129,8 +131,10 @@
     .footer-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
     @media(max-width:768px){.footer-inner{grid-template-columns:1fr 1fr}}
     @media(max-width:480px){.footer-inner{grid-template-columns:1fr}}
-    .footer-brand .fb-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:#fff;margin-bottom:10px}
-    .footer-brand .fb-logo span{color:var(--sky)}
+    .footer-brand .fb-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+    .footer-brand .fb-logo img{height:36px;width:36px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(56,189,248,.35)}
+    .footer-brand .fb-logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:#fff}
+    .footer-brand .fb-logo-text span{color:var(--sky)}
     .footer-brand p{font-size:13px;color:var(--muted);line-height:1.7;max-width:220px}
     .footer-col h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px}
     .footer-col a{display:block;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:8px;transition:color .2s}
@@ -148,7 +152,7 @@
 <body>
 
 <nav>
-  <div class="nav-logo">PROBITY<span>AI</span></div>
+  <a href="index.html" class="nav-logo"><img src="1774358514997.jpg" alt="PROBITY AI Logo"/><span class="nav-logo-text">PROBITY<span>AI</span></span></a>
   <div class="nav-links">
     <a href="#how">How it works</a>
     <a href="#platforms">Platforms</a>
@@ -165,6 +169,7 @@
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-inner">
+    <img src="1774358514997.jpg" alt="PROBITY AI" style="width:90px;height:90px;border-radius:50%;border:2px solid rgba(56,189,248,.35);margin-bottom:24px;object-fit:cover;box-shadow:0 0 40px rgba(56,189,248,.25)"/>
     <div class="hero-badge">● Live on TON Blockchain</div>
     <h1>Earn <em>USDT</em> by Posting<br/><span>Ads on Social Media</span></h1>
     <p class="hero-sub">PROBITY AI connects merchants with promoters. Post available ads to your Facebook, Instagram, TikTok and more — earn real USDT rewards per post, automatically.</p>
@@ -329,7 +334,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="fb-logo">PROBITY<span>AI</span></div>
+      <div class="fb-logo"><img src="1774358514997.jpg" alt="PROBITY AI Logo"/><span class="fb-logo-text">PROBITY<span>AI</span></span></div>
       <p>Blockchain-powered advertising. Earn USDT by posting ads on your social media.</p>
     </div>
     <div class="footer-col">
