@@ -30,7 +30,7 @@
 
     /* ── NAV ── */
     nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(14px);background:rgba(6,11,20,.8);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
-    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;color:#fff;text-decoration:none}
+    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:#fff;letter-spacing:.5px;text-decoration:none}
     .nav-logo span{color:var(--sky)}
     .nav-links{display:flex;gap:24px;align-items:center}
     .nav-links a{color:var(--muted);font-size:14px;text-decoration:none;transition:color .2s}
@@ -129,10 +129,8 @@
     .footer-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
     @media(max-width:768px){.footer-inner{grid-template-columns:1fr 1fr}}
     @media(max-width:480px){.footer-inner{grid-template-columns:1fr}}
-    .footer-brand .fb-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-    .footer-brand .fb-logo img{height:36px;width:36px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(56,189,248,.35)}
-    .footer-brand .fb-logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:#fff}
-    .footer-brand .fb-logo-text span{color:var(--sky)}
+    .footer-brand .fb-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:#fff;margin-bottom:10px}
+    .footer-brand .fb-logo span{color:var(--sky)}
     .footer-brand p{font-size:13px;color:var(--muted);line-height:1.7;max-width:220px}
     .footer-col h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px}
     .footer-col a{display:block;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:8px;transition:color .2s}
